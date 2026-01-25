@@ -2,95 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ARGUS Engineering Documentation Design System
+   Dark industrial theme with muted blue-grey accent
+   All colors in HSL format */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark industrial palette */
+    --background: 0 0% 5.5%;          /* #0e0e0e */
+    --foreground: 0 0% 92%;           /* #eaeaea */
+    
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 92%;
+    
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 92%;
+    
+    /* Muted blue-grey accent: #3a5568 */
+    --primary: 205 29% 32%;
+    --primary-foreground: 0 0% 92%;
+    
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 92%;
+    
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    
+    --accent: 205 29% 32%;
+    --accent-foreground: 0 0% 92%;
+    
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 92%;
+    
+    /* Borders: #2a2a2a */
+    --border: 0 0% 16.5%;
+    --input: 0 0% 16.5%;
+    --ring: 205 29% 32%;
+    
+    --radius: 0;
+    
+    /* Documentation-specific tokens */
+    --doc-max-width: 42rem;
+    --doc-spacing: 2rem;
+    --doc-line-height: 1.7;
   }
 
+  /* No light mode - engineering docs stay dark */
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 0 0% 5.5%;
+    --foreground: 0 0% 92%;
   }
 }
 
@@ -98,8 +60,120 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: var(--doc-line-height);
+  }
+  
+  /* Typography - engineering documentation style */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium text-foreground;
+    letter-spacing: -0.01em;
+  }
+  
+  h1 {
+    @apply text-xl;
+  }
+  
+  h2 {
+    @apply text-lg;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    @apply text-foreground/90;
+    margin-bottom: 1rem;
+  }
+  
+  ul {
+    @apply text-foreground/90;
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  li {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.35rem;
+  }
+  
+  li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: hsl(var(--muted-foreground));
+  }
+  
+  a {
+    @apply text-primary underline;
+    text-underline-offset: 2px;
+  }
+  
+  a:hover {
+    @apply text-foreground;
+  }
+  
+  /* Code/mono text */
+  code {
+    font-family: 'SF Mono', 'Consolas', monospace;
+    font-size: 0.9em;
+    @apply text-foreground/80;
+  }
+}
+
+/* Documentation layout utilities */
+@layer components {
+  .doc-container {
+    max-width: var(--doc-max-width);
+    margin: 0 auto;
+    padding: 0 var(--doc-spacing);
+  }
+  
+  .doc-section {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid hsl(var(--border));
+  }
+  
+  .doc-section:first-of-type {
+    border-top: none;
+  }
+  
+  .doc-nav-link {
+    @apply text-muted-foreground no-underline;
+    font-size: 0.875rem;
+  }
+  
+  .doc-nav-link:hover {
+    @apply text-foreground;
+  }
+  
+  .doc-diagram {
+    @apply my-6;
+    padding: 1.5rem;
+    border: 1px solid hsl(var(--border));
+  }
+  
+  .doc-caption {
+    @apply text-muted-foreground;
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+  }
+  
+  .doc-links {
+    @apply text-foreground/90;
+  }
+  
+  .doc-links a {
+    display: block;
+    margin-bottom: 0.5rem;
   }
 }
