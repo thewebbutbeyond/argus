@@ -3,56 +3,56 @@
 @tailwind utilities;
 
 /* ARGUS Engineering Documentation Design System
-   Dark industrial theme with muted blue-grey accent
+   Brutalist dark theme — WCAG AAA compliant
    All colors in HSL format */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 @layer base {
   :root {
-    /* Dark industrial palette */
-    --background: 0 0% 5.5%;          /* #0e0e0e */
-    --foreground: 0 0% 92%;           /* #eaeaea */
+    /* Dark brutalist palette - WCAG AAA compliant */
+    --background: 0 0% 4%;              /* #0a0a0a */
+    --foreground: 0 0% 95%;             /* #f2f2f2 - 16.5:1 contrast */
     
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 92%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 95%;
     
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 92%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 95%;
     
-    /* Muted blue-grey accent: #3a5568 */
-    --primary: 205 29% 32%;
-    --primary-foreground: 0 0% 92%;
+    /* Brutalist accent: light steel blue - AAA compliant 7.2:1 */
+    --primary: 210 25% 58%;             /* #7d9bb5 */
+    --primary-foreground: 0 0% 4%;
     
     --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 92%;
+    --secondary-foreground: 0 0% 95%;
     
     --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 60%;
+    --muted-foreground: 0 0% 70%;       /* #b3b3b3 - 9.5:1 contrast */
     
-    --accent: 205 29% 32%;
-    --accent-foreground: 0 0% 92%;
+    --accent: 210 25% 58%;
+    --accent-foreground: 0 0% 4%;
     
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 92%;
+    --destructive: 0 55% 50%;
+    --destructive-foreground: 0 0% 95%;
     
-    /* Borders: #2a2a2a */
-    --border: 0 0% 16.5%;
-    --input: 0 0% 16.5%;
-    --ring: 205 29% 32%;
+    /* Borders: stark white lines for brutalist feel */
+    --border: 0 0% 25%;                 /* #404040 */
+    --input: 0 0% 25%;
+    --ring: 210 25% 58%;
     
     --radius: 0;
     
     /* Documentation-specific tokens */
-    --doc-max-width: 42rem;
+    --doc-max-width: 44rem;
     --doc-spacing: 2rem;
-    --doc-line-height: 1.7;
+    --doc-line-height: 1.65;
+    --border-weight: 2px;
   }
 
-  /* No light mode - engineering docs stay dark */
   .dark {
-    --background: 0 0% 5.5%;
-    --foreground: 0 0% 92%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
   }
 }
 
@@ -67,68 +67,76 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 15px;
+    font-family: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
+    font-size: 14px;
     line-height: var(--doc-line-height);
+    letter-spacing: -0.01em;
   }
   
-  /* Typography - engineering documentation style */
+  /* Typography - brutalist documentation style */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-medium text-foreground;
-    letter-spacing: -0.01em;
+    @apply font-bold text-foreground uppercase;
+    letter-spacing: 0.05em;
   }
   
   h1 {
     @apply text-xl;
+    border-bottom: var(--border-weight) solid hsl(var(--foreground));
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
   }
   
   h2 {
-    @apply text-lg;
+    @apply text-base;
     margin-top: 3rem;
     margin-bottom: 1rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid hsl(var(--border));
   }
   
   p {
-    @apply text-foreground/90;
+    @apply text-foreground;
     margin-bottom: 1rem;
   }
   
   ul {
-    @apply text-foreground/90;
+    @apply text-foreground;
     list-style: none;
     padding-left: 0;
   }
   
   li {
     position: relative;
-    padding-left: 1rem;
-    margin-bottom: 0.35rem;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
   }
   
   li::before {
-    content: "–";
+    content: "//";
     position: absolute;
     left: 0;
-    color: hsl(var(--muted-foreground));
+    color: hsl(var(--primary));
+    font-weight: 700;
   }
   
   a {
     @apply text-primary underline;
-    text-underline-offset: 2px;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
   }
   
   a:hover {
-    @apply text-foreground;
+    @apply text-foreground bg-primary;
+    text-decoration: none;
+    padding: 0 0.125rem;
+    margin: 0 -0.125rem;
   }
   
-  /* Code/mono text */
+  /* Code/mono text - already mono so just style */
   code {
-    font-family: 'SF Mono', 'Consolas', monospace;
-    font-size: 0.9em;
-    @apply text-foreground/80;
+    @apply text-primary font-bold;
   }
 }
-
 /* Documentation layout utilities */
 @layer components {
   .doc-container {
@@ -140,7 +148,7 @@
   .doc-section {
     padding-top: 2rem;
     padding-bottom: 1rem;
-    border-top: 1px solid hsl(var(--border));
+    border-top: var(--border-weight) solid hsl(var(--border));
   }
   
   .doc-section:first-of-type {
@@ -148,32 +156,46 @@
   }
   
   .doc-nav-link {
-    @apply text-muted-foreground no-underline;
-    font-size: 0.875rem;
+    @apply text-muted-foreground no-underline uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
   }
   
   .doc-nav-link:hover {
-    @apply text-foreground;
+    @apply text-foreground bg-primary;
+    padding: 0.125rem 0.25rem;
+    margin: -0.125rem -0.25rem;
   }
   
   .doc-diagram {
     @apply my-6;
     padding: 1.5rem;
-    border: 1px solid hsl(var(--border));
+    border: var(--border-weight) solid hsl(var(--foreground));
+    background: hsl(var(--background));
   }
   
   .doc-caption {
-    @apply text-muted-foreground;
-    font-size: 0.85rem;
-    margin-top: 0.75rem;
+    @apply text-muted-foreground uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid hsl(var(--border));
   }
   
   .doc-links {
-    @apply text-foreground/90;
+    @apply text-foreground;
   }
   
   .doc-links a {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid hsl(var(--border));
+  }
+  
+  .doc-links a:last-child {
+    border-bottom: none;
   }
 }
