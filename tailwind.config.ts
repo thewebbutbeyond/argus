@@ -49,8 +49,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['JetBrains Mono', 'SF Mono', 'Consolas', 'monospace'],
-        mono: ['JetBrains Mono', 'SF Mono', 'Consolas', 'monospace'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'system-ui', 'sans-serif'],
+        mono: ['SF Mono', 'Consolas', 'monospace'],
       },
       borderRadius: {
         lg: "var(--radius)",
