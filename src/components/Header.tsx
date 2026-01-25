@@ -9,10 +9,12 @@ const Header = () => {
   ];
 
   return (
-    <header className="py-6 border-b border-border">
+    <header className="py-6 border-b-2 border-foreground">
       <div className="doc-container flex justify-between items-baseline flex-wrap gap-4">
-        <span className="text-foreground font-medium">argus</span>
-        <nav className="flex gap-6 flex-wrap">
+        <span className="text-foreground font-bold text-lg uppercase tracking-widest">
+          argus
+        </span>
+        <nav className="flex gap-4 flex-wrap">
           {navLinks.map((link) => (
             <a
               key={link.href}
