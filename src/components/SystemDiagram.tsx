@@ -1,44 +1,54 @@
+const stages = [
+  {
+    title: "Camera capture",
+    detail: "Live frame acquisition on Raspberry Pi with a stable V4L2-first path.",
+  },
+  {
+    title: "Vision processing",
+    detail: "Marker presence, ROI, and motion quality checks generate the safety state.",
+  },
+  {
+    title: "Guardian state machine",
+    detail: "Unsafe evidence drives freeze; stable good frames drive controlled recovery.",
+  },
+  {
+    title: "Robot interlock",
+    detail: "Motion is gated here, so unsafe state blocks actuation at the hardware boundary.",
+  },
+  {
+    title: "Motion controller",
+    detail: "PCA9685-backed commands reach the arm only when the interlock allows motion.",
+  },
+];
+
 const SystemDiagram = () => {
   return (
-    <div className="doc-diagram">
-      <svg
-        viewBox="0 0 620 90"
-        className="w-full h-auto"
-        aria-label="System model diagram showing data flow from camera input through hazard evaluation to stop output"
-      >
-        {/* Boxes - clean institutional style */}
-        <rect x="0" y="30" width="120" height="35" fill="none" stroke="#282d33" strokeWidth="1.5" rx="2" />
-        <rect x="160" y="30" width="140" height="35" fill="none" stroke="#282d33" strokeWidth="1.5" rx="2" />
-        <rect x="340" y="30" width="140" height="35" fill="none" stroke="#282d33" strokeWidth="1.5" rx="2" />
-        <rect x="520" y="30" width="100" height="35" fill="none" stroke="#282d33" strokeWidth="1.5" rx="2" />
-        
-        {/* Labels - clean sans-serif */}
-        <text x="60" y="52" textAnchor="middle" fill="#282d33" fontSize="10" fontFamily="Inter, system-ui, sans-serif" fontWeight="500">
-          camera input
-        </text>
-        <text x="230" y="52" textAnchor="middle" fill="#282d33" fontSize="10" fontFamily="Inter, system-ui, sans-serif" fontWeight="500">
-          hazard evaluation
-        </text>
-        <text x="410" y="52" textAnchor="middle" fill="#282d33" fontSize="10" fontFamily="Inter, system-ui, sans-serif" fontWeight="500">
-          guardian decision
-        </text>
-        <text x="570" y="52" textAnchor="middle" fill="#282d33" fontSize="10" fontFamily="Inter, system-ui, sans-serif" fontWeight="500">
-          stop/inhibit
-        </text>
-        
-        {/* Arrows - clinical teal accent */}
-        <line x1="120" y1="47.5" x2="155" y2="47.5" stroke="#186b8c" strokeWidth="1.5" />
-        <polygon points="155,44 160,47.5 155,51" fill="#186b8c" />
-        
-        <line x1="300" y1="47.5" x2="335" y2="47.5" stroke="#186b8c" strokeWidth="1.5" />
-        <polygon points="335,44 340,47.5 335,51" fill="#186b8c" />
-        
-        <line x1="480" y1="47.5" x2="515" y2="47.5" stroke="#186b8c" strokeWidth="1.5" />
-        <polygon points="515,44 520,47.5 515,51" fill="#186b8c" />
-      </svg>
-      <p className="doc-caption">
-        Communication is event-driven; the input event triggers the processing chain.
-      </p>
+    <div className="rounded-[2rem] border border-border/70 bg-card/75 p-6 shadow-[0_20px_80px_-40px_rgba(15,23,42,0.35)] lg:p-8">
+      <div className="grid gap-4 lg:grid-cols-5">
+        {stages.map((stage, index) => (
+          <div key={stage.title} className="relative rounded-[1.5rem] border border-border/70 bg-background/75 p-5">
+            <div className="mb-4 flex items-center justify-between">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 font-mono text-xs font-semibold text-primary">
+                0{index + 1}
+              </span>
+              {index < stages.length - 1 ? (
+                <span className="hidden text-xs uppercase tracking-[0.24em] text-muted-foreground lg:inline">
+                  next
+                </span>
+              ) : null}
+            </div>
+            <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
+              {stage.title}
+            </h3>
+            <p className="text-sm leading-6 text-muted-foreground">{stage.detail}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6 rounded-[1.25rem] border border-primary/25 bg-primary/8 px-5 py-4 text-sm text-foreground">
+        Freeze, acknowledge, and resume remain part of the same control chain. ARGUS
+        is not a motion shortcut layered on top of the robot. It is the gate.
+      </div>
     </div>
   );
 };

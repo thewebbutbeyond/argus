@@ -1,25 +1,34 @@
 const Header = () => {
   const navLinks = [
-    { href: "#scope", label: "scope" },
-    { href: "#system-model", label: "system model" },
-    { href: "#real-time-constraints", label: "real-time constraints" },
-    { href: "#failure-behaviour", label: "failure behaviour" },
-    { href: "#implementation-notes", label: "implementation notes" },
-    { href: "#repository", label: "repository" },
+    { href: "#platform", label: "Platform" },
+    { href: "#workflow", label: "Workflow" },
+    { href: "#validation", label: "Validation" },
+    { href: "#integration", label: "Integration" },
   ];
 
   return (
-    <header className="py-5 border-b border-border bg-card">
-      <div className="doc-container flex justify-between items-center flex-wrap gap-4">
-        <span className="text-foreground font-semibold text-lg tracking-tight">
-          argus
-        </span>
-        <nav className="flex gap-5 flex-wrap">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
+        <a href="#top" className="flex items-center gap-3 no-underline">
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/30 bg-primary/10 font-display text-lg font-semibold text-primary">
+            A
+          </span>
+          <div>
+            <p className="font-display text-lg font-semibold tracking-tight text-foreground">
+              ARGUS
+            </p>
+            <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
+              real-time safety supervision
+            </p>
+          </div>
+        </a>
+
+        <nav className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="doc-nav-link"
+              className="text-sm font-medium text-muted-foreground no-underline transition-colors hover:text-foreground"
             >
               {link.label}
             </a>
