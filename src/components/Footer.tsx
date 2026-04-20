@@ -1,21 +1,26 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Instagram, Youtube, Linkedin, Music } from "lucide-react";
 
 const Footer = () => {
   const socialLinks = [
     {
-      href: "https://github.com/ENG5220-RTEP-ARGUS/ARGUS",
-      label: "GitHub",
-      icon: Github,
+      href: "https://www.instagram.com/argus102026/",
+      label: "Instagram",
+      icon: Instagram,
     },
     {
-      href: "https://www.linkedin.com/search/results/all/?keywords=ARGUS%20robotics",
+      href: "https://www.youtube.com/@argus-w3g",
+      label: "YouTube",
+      icon: Youtube,
+    },
+    {
+      href: "https://www.linkedin.com/company/a-r-g-u-s",
       label: "LinkedIn",
       icon: Linkedin,
     },
     {
-      href: "mailto:argus@example.com",
-      label: "Email",
-      icon: Mail,
+      href: "https://www.tiktok.com/@argusxisx61?_r=1&_t=ZN-95E4anYeInm",
+      label: "TikTok",
+      icon: Music,
     },
   ];
 
