@@ -10,9 +10,11 @@ const Header = () => {
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
         <a href="#top" className="flex items-center gap-3 no-underline">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/30 bg-primary/10 font-display text-lg font-semibold text-primary">
-            A
-          </span>
+          <img 
+            src="/argus-logo.png" 
+            alt="ARGUS Logo" 
+            className="h-10 w-10"
+          />
           <div>
             <p className="font-display text-lg font-semibold tracking-tight text-foreground">
               ARGUS
