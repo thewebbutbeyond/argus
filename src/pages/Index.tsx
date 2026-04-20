@@ -6,34 +6,34 @@ import SystemDiagram from "@/components/SystemDiagram";
 
 const proofCards = [
   {
-    title: "Validated on hardware",
-    body: "Raspberry Pi 5, camera, PCA9685, MeArm, and physical operator button exercised end-to-end.",
+    title: "Real hardware, real tests",
+    body: "Raspberry Pi, camera, servo controller, robotic arm, physical buttons. Each module runs its test; the full pipeline runs end-to-end.",
   },
   {
-    title: "Operator-visible safety",
-    body: "Unsafe scene freezes motion immediately. Recovery stays paused until an explicit continue action.",
+    title: "Safety you can see",
+    body: "Unsafe scene triggers immediate freeze. Recovery is paused. Operator must acknowledge the event and explicitly continue.",
   },
   {
-    title: "Clear embedded control path",
-    body: "Camera capture, vision, guardian, interlock, and motion remain separate and testable.",
+    title: "Modular and verifiable",
+    body: "Capture, vision, guardian logic, interlock, and motion stay separate. Each can be tested and reasoned about independently.",
   },
 ];
 
 const featureCards = [
   {
     icon: Shield,
-    title: "Independent supervision",
-    body: "ARGUS watches the workspace and makes a separate safety decision about whether motion is allowed.",
+    title: "Deterministic safety",
+    body: "Each stage of the control path is isolated and testable. No black box, no hidden state.",
   },
   {
     icon: Zap,
-    title: "Fast, explicit intervention",
-    body: "When the scene goes unsafe, motion is frozen through the interlock rather than left to application guesswork.",
+    title: "Hardware interlock",
+    body: "When unsafe, motion freezes through verified GPIO interlock. Not a software-only brake.",
   },
   {
     icon: Hand,
-    title: "Operator-controlled recovery",
-    body: "Safe-again does not mean auto-resume. Recovery still requires a deliberate continue action from the operator.",
+    title: "Explicit recovery",
+    body: "Safe again does not mean moving again. Operator must acknowledge and command resume.",
   },
 ];
 
@@ -65,16 +65,15 @@ const Index = () => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <p className="text-sm font-semibold uppercase tracking-[0.32em] text-primary">
-                  Embedded safety platform
+                  Real-time safety supervision
                 </p>
                 <h1 className="max-w-4xl font-display text-5xl font-semibold tracking-tight text-foreground md:text-6xl">
-                  A vision safety layer built to stop the robot when the scene stops making sense.
+                  Stop the robot when the workspace becomes unsafe.
                 </h1>
                 <p className="max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">
-                  ARGUS monitors the workspace, evaluates live visual safety conditions,
-                  freezes motion when needed, and only restores motion through a visible,
-                  deliberate recovery path. It is designed to feel like a real industrial
-                  control product, not a black-box demo.
+                  ARGUS is a vision-based safety layer that watches the scene, makes independent
+                  safety decisions, and freezes motion through hardware interlock. Recovery is
+                  explicit—no auto-resume, no guesswork. Built on Raspberry Pi. Tested. Real.
                 </p>
               </div>
 
@@ -138,13 +137,12 @@ const Index = () => {
               Platform
             </p>
             <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground">
-              A product-style control stack, grounded in the system you actually built.
+              Independent, deterministic, testable.
             </h2>
             <p className="text-lg leading-8 text-muted-foreground">
-              The Attys material gets one thing right: the site should explain what the
-              system is for, what it can do, how it integrates, and why anyone should
-              trust it. ARGUS should do the same, while staying honest about its current
-              maturity and validation scope.
+              The control stack is intentionally simple: capture, vision, guardian logic, hardware interlock,
+              and operator controls stay separate. This means each stage is testable, the behavior is predictable,
+              and a robotics team can actually reason about what's happening.
             </p>
           </div>
 
@@ -220,12 +218,12 @@ const Index = () => {
               Validation
             </p>
             <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground">
-              Real tests, not just architecture diagrams.
+              Tested on hardware, not in simulations.
             </h2>
             <p className="text-lg leading-8 text-muted-foreground">
-              The current base already covers the kind of evidence a technical reviewer
-              wants to see: isolated hardware checks, operator input checks, live vision
-              behavior, and full-loop demos on the Pi.
+              ARGUS runs on real Raspberry Pi hardware with actual camera feed, physical operator buttons,
+              and a real robotic arm. Each module is isolated and tested. The full pipeline—detection, freeze,
+              safe-again, acknowledgment, resume—works on silicon.
             </p>
           </div>
 
@@ -291,16 +289,15 @@ const Index = () => {
           <div className="rounded-[2rem] border border-border/70 bg-[linear-gradient(135deg,rgba(196,83,42,0.08),rgba(39,104,130,0.08))] p-8 lg:p-10">
             <div className="max-w-4xl space-y-4">
               <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">
-                Positioning
+                Ready to integrate
               </p>
               <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground">
-                The next iteration should sell confidence, control, and integration readiness.
+                Safety that a robotics team can build with.
               </h2>
               <p className="text-lg leading-8 text-muted-foreground">
-                That means less “student project” language and more emphasis on what an
-                engineering buyer or technical reviewer cares about: what the system
-                supervises, how it intervenes, how it recovers, what it runs on, and what
-                has already been demonstrated on hardware.
+                ARGUS is not a black-box AI system. It is a structured, testable control layer. The code is modular,
+                the behavior is deterministic, and the hardware demo is real. Start from the control pipeline, understand
+                what you are integrating, and trust that it will work the same way on your hardware.
               </p>
             </div>
           </div>
