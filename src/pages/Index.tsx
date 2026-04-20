@@ -60,7 +60,7 @@ const Index = () => {
 
       <main>
         <section className="relative overflow-hidden border-b border-border/60">
-          <div className="absolute inset-x-0 top-0 -z-10 h-[34rem] bg-[radial-gradient(circle_at_top_left,rgba(196,83,42,0.18),transparent_36%),radial-gradient(circle_at_top_right,rgba(39,104,130,0.18),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.96),rgba(246,242,236,0.88))]" />
+          <div className="absolute inset-x-0 top-0 -z-10 h-[34rem] bg-[radial-gradient(circle_at_top_left,rgba(255,138,76,0.08),transparent_36%),radial-gradient(circle_at_top_right,rgba(255,138,76,0.08),transparent_28%),linear-gradient(180deg,rgba(255,255,255,1),rgba(255,255,255,1))]" />
           <div className="mx-auto grid w-full max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[1.2fr_0.9fr] lg:px-10 lg:py-24">
             <div className="space-y-8">
               <div className="space-y-4">
@@ -286,7 +286,7 @@ const Index = () => {
         </section>
 
         <section className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
-          <div className="rounded-[2rem] border border-border/70 bg-[linear-gradient(135deg,rgba(196,83,42,0.08),rgba(39,104,130,0.08))] p-8 lg:p-10">
+          <div className="rounded-[2rem] border border-border/70 bg-[linear-gradient(135deg,rgba(255,138,76,0.05),rgba(255,138,76,0.05))] p-8 lg:p-10">
             <div className="max-w-4xl space-y-4">
               <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">
                 Ready to integrate
