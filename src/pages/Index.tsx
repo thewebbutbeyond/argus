@@ -169,8 +169,9 @@ const Index = () => {
         </section>
 
         <section id="workflow" className="border-y border-border/60 bg-card/40">
-          <div className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
-            <div className="mb-16 max-w-3xl space-y-4">
+          <div className="mx-auto grid w-full max-w-7xl gap-12 px-6 py-20 lg:grid-cols-2 lg:px-10">
+            {/* Left: Description */}
+            <div className="space-y-5">
               <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">
                 Workflow
               </p>
@@ -184,6 +185,7 @@ const Index = () => {
               </p>
             </div>
 
+            {/* Right: Timeline */}
             <div className="space-y-0">
               {/* Step 01 */}
               <div className="border-l-2 border-border/70 pl-8 py-8">
