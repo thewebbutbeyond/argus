@@ -68,7 +68,7 @@ const Index = () => {
                   Real-time safety supervision
                 </p>
                 <h1 className="max-w-4xl font-display text-5xl font-semibold tracking-tight text-foreground md:text-6xl">
-                  Stop the robot when the workspace becomes unsafe.
+                  Stop the robot when the workspace becomes unsafe
                 </h1>
                 <p className="max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">
                   ARGUS is a vision-based safety layer that watches the scene, makes independent
@@ -137,7 +137,7 @@ const Index = () => {
               Platform
             </p>
             <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground">
-              Independent, deterministic, testable.
+              Independent, deterministic, testable
             </h2>
             <p className="text-lg leading-8 text-muted-foreground">
               The control stack is intentionally simple: capture, vision, guardian logic, hardware interlock,
@@ -169,46 +169,87 @@ const Index = () => {
         </section>
 
         <section id="workflow" className="border-y border-border/60 bg-card/40">
-          <div className="mx-auto grid w-full max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
-            <div className="space-y-5">
+          <div className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+            <div className="mb-16 max-w-3xl space-y-4">
               <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">
                 Workflow
               </p>
               <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground">
-                Five steps from scene observation to motion permission.
+                Five steps from scene observation to motion permission
               </h2>
               <p className="text-lg leading-8 text-muted-foreground">
                 The control path is deliberately readable. Each stage has one job, which
                 makes the behavior easier to test on hardware and easier to explain to an
                 engineering team.
               </p>
+            </div>
 
-              <div className="grid gap-3">
-                <div className="flex items-start gap-3 rounded-2xl border border-border/70 bg-background/80 p-4">
-                  <Camera className="mt-0.5 h-5 w-5 text-primary" />
-                  <p className="text-sm leading-7 text-muted-foreground">
-                    Camera frames drive the supervision path continuously while the operator
-                    sees the same state in the GUI.
+            <div className="space-y-0">
+              {/* Step 01 */}
+              <div className="border-l-2 border-border/70 pl-8 py-8">
+                <div className="relative">
+                  <div className="absolute -left-12 top-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-mono text-sm font-semibold">
+                    01
+                  </div>
+                  <h3 className="font-display text-xl font-semibold text-foreground mb-2">Camera capture</h3>
+                  <p className="text-sm leading-7 text-muted-foreground max-w-2xl">
+                    Live frame acquisition on Raspberry Pi with a stable V4L2-first path.
                   </p>
                 </div>
-                <div className="flex items-start gap-3 rounded-2xl border border-border/70 bg-background/80 p-4">
-                  <Cpu className="mt-0.5 h-5 w-5 text-primary" />
-                  <p className="text-sm leading-7 text-muted-foreground">
-                    Vision and guardian logic decide whether motion stays allowed, freezes,
-                    or is waiting on controlled recovery.
+              </div>
+
+              {/* Step 02 */}
+              <div className="border-l-2 border-border/70 pl-8 py-8">
+                <div className="relative">
+                  <div className="absolute -left-12 top-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-mono text-sm font-semibold">
+                    02
+                  </div>
+                  <h3 className="font-display text-xl font-semibold text-foreground mb-2">Vision processing</h3>
+                  <p className="text-sm leading-7 text-muted-foreground max-w-2xl">
+                    Marker presence, ROI, and motion quality checks generate the safety state.
                   </p>
                 </div>
-                <div className="flex items-start gap-3 rounded-2xl border border-border/70 bg-background/80 p-4">
-                  <TimerReset className="mt-0.5 h-5 w-5 text-primary" />
-                  <p className="text-sm leading-7 text-muted-foreground">
-                    Resume is not automatic. Safe-again still needs a continue action from
-                    the operator before the system reopens the motion gate.
+              </div>
+
+              {/* Step 03 */}
+              <div className="border-l-2 border-border/70 pl-8 py-8">
+                <div className="relative">
+                  <div className="absolute -left-12 top-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-mono text-sm font-semibold">
+                    03
+                  </div>
+                  <h3 className="font-display text-xl font-semibold text-foreground mb-2">Guardian state machine</h3>
+                  <p className="text-sm leading-7 text-muted-foreground max-w-2xl">
+                    Unsafe evidence drives freeze; stable good frames drive controlled recovery.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 04 */}
+              <div className="border-l-2 border-border/70 pl-8 py-8">
+                <div className="relative">
+                  <div className="absolute -left-12 top-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-mono text-sm font-semibold">
+                    04
+                  </div>
+                  <h3 className="font-display text-xl font-semibold text-foreground mb-2">Robot interlock</h3>
+                  <p className="text-sm leading-7 text-muted-foreground max-w-2xl">
+                    Motion is gated here, so unsafe state blocks actuation at the hardware boundary.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 05 */}
+              <div className="pl-8 py-8">
+                <div className="relative">
+                  <div className="absolute -left-12 top-0 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-mono text-sm font-semibold">
+                    05
+                  </div>
+                  <h3 className="font-display text-xl font-semibold text-foreground mb-2">Motion controller</h3>
+                  <p className="text-sm leading-7 text-muted-foreground max-w-2xl">
+                    PCA9685-backed commands reach the arm only when the interlock allows motion.
                   </p>
                 </div>
               </div>
             </div>
-
-            <SystemDiagram />
           </div>
         </section>
 
@@ -218,7 +259,7 @@ const Index = () => {
               Validation
             </p>
             <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground">
-              Tested on hardware, not in simulations.
+              Tested on hardware, not in simulations
             </h2>
             <p className="text-lg leading-8 text-muted-foreground">
               ARGUS runs on real Raspberry Pi hardware with actual camera feed, physical operator buttons,
@@ -263,7 +304,7 @@ const Index = () => {
                 Integration
               </p>
               <h2 className="font-display text-4xl font-semibold tracking-tight text-background">
-                Built like something a robotics team could reason about.
+                Built like something a robotics team could reason about
               </h2>
               <p className="text-lg leading-8 text-background/72">
                 The value is not only in the demo. It is also in the way the system is
@@ -292,7 +333,7 @@ const Index = () => {
                 Ready to integrate
               </p>
               <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground">
-                Safety that a robotics team can build with.
+                Safety that a robotics team can build with
               </h2>
               <p className="text-lg leading-8 text-muted-foreground">
                 ARGUS is not a black-box AI system. It is a structured, testable control layer. The code is modular,
