@@ -1,27 +1,32 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Instagram, Youtube, Linkedin, Music } from "lucide-react";
 
 const Footer = () => {
   const socialLinks = [
     {
-      href: "https://github.com/ENG5220-RTEP-ARGUS/ARGUS",
-      label: "GitHub",
-      icon: Github,
+      href: "https://www.instagram.com/argus102026/",
+      label: "Instagram",
+      icon: Instagram,
     },
     {
-      href: "https://www.linkedin.com/search/results/all/?keywords=ARGUS%20robotics",
+      href: "https://www.youtube.com/@argus-w3g",
+      label: "YouTube",
+      icon: Youtube,
+    },
+    {
+      href: "https://www.linkedin.com/company/a-r-g-u-s",
       label: "LinkedIn",
       icon: Linkedin,
     },
     {
-      href: "mailto:argus@example.com",
-      label: "Email",
-      icon: Mail,
+      href: "https://www.tiktok.com/@argusxisx61?_r=1&_t=ZN-95E4anYeInm",
+      label: "TikTok",
+      icon: Music,
     },
   ];
 
   return (
     <footer className="border-t border-border/70 bg-card/60">
-      <div className="mx-auto grid w-full max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[1.3fr_1fr_auto] lg:px-10">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[1fr_auto] lg:px-10">
         <div className="space-y-3">
           <p className="font-display text-lg font-semibold text-foreground">ARGUS</p>
           <p className="max-w-2xl text-sm text-muted-foreground">
@@ -29,12 +34,6 @@ const Footer = () => {
             monitor the scene, freeze unsafe motion, and resume only through an
             explicit recovery path.
           </p>
-        </div>
-
-        <div className="space-y-2 text-sm text-muted-foreground">
-          <p>Validated hardware demo on Raspberry Pi.</p>
-          <p>C++ control core, camera supervision, interlock-gated motion.</p>
-          <p>ENG5220 real-time embedded programming · 2025–26</p>
         </div>
 
         <div className="flex items-start gap-4">
