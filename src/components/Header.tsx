@@ -1,3 +1,5 @@
+import argusLogo from "@/assets/argus-logo.png";
+
 const Header = () => {
   const navLinks = [
     { href: "#platform", label: "Platform" },
@@ -11,7 +13,7 @@ const Header = () => {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-10">
         <a href="#top" className="flex items-center gap-3 no-underline">
           <img 
-            src="/argus-logo.png" 
+            src={argusLogo} 
             alt="ARGUS Logo" 
             className="h-10 w-10"
           />
