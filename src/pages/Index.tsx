@@ -73,7 +73,7 @@ const Index = () => {
                 <p className="max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">
                   ARGUS is a vision-based safety layer that watches the scene, makes independent
                   safety decisions, and freezes motion through hardware interlock. Recovery is
-                  explicit—no auto-resume, no guesswork. Built on Raspberry Pi. Tested. Real.
+                  explicit; no auto-resume, no guesswork. Built on Raspberry Pi. Tested. Real.
                 </p>
               </div>
 
@@ -222,8 +222,8 @@ const Index = () => {
             </h2>
             <p className="text-lg leading-8 text-muted-foreground">
               ARGUS runs on real Raspberry Pi hardware with actual camera feed, physical operator buttons,
-              and a real robotic arm. Each module is isolated and tested. The full pipeline—detection, freeze,
-              safe-again, acknowledgment, resume—works on silicon.
+              and a real robotic arm. Each module is isolated and tested. The full pipeline (detection, freeze,
+              safe-again, acknowledgment, resume) works on silicon.
             </p>
           </div>
 
