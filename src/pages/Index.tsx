@@ -1,4 +1,4 @@
-import { ArrowRight, Camera, Cpu, Hand, Shield, TimerReset, Zap } from "lucide-react";
+import { ArrowRight, Hand, Shield, Zap } from "lucide-react";
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -11,11 +11,11 @@ const proofCards = [
   },
   {
     title: "Safety you can see",
-    body: "Unsafe scene triggers immediate freeze. Recovery is paused. Operator must acknowledge the event and explicitly continue.",
+    body: "Unsafe evidence stops routine progress, retracts to a safe pose, then holds frozen. Recovery needs explicit operator acknowledge.",
   },
   {
-    title: "Modular and verifiable",
-    body: "Capture, vision, guardian logic, interlock, and motion stay separate. Each can be tested and reasoned about independently.",
+    title: "Measured and justified",
+    body: "Latency metrics are measured at runtime and compared against targets derived from surgical robotics and teleoperation literature.",
   },
 ];
 
@@ -28,12 +28,12 @@ const featureCards = [
   {
     icon: Zap,
     title: "Hardware interlock",
-    body: "When unsafe, motion freezes through verified GPIO interlock. Not a software-only brake.",
+    body: "Motion commands pass through an interlock gate. Unsafe state blocks output at the actuator boundary.",
   },
   {
     icon: Hand,
     title: "Explicit recovery",
-    body: "Safe again does not mean moving again. Operator must acknowledge and command resume.",
+    body: "Safe again does not auto-resume. The same control path (space/button) is required to continue.",
   },
 ];
 
@@ -41,16 +41,37 @@ const validationItems = [
   "Per-joint motion smoke tests for base, lower, upper, and grip",
   "All-joint hardware smoke test over the PCA9685 path",
   "Physical GPIO button diagnostics with debounce and state reporting",
-  "Live marker supervision with GUI status and controlled arming",
-  "Full pipeline demo: freeze, safe-again, acknowledge, and resume",
+  "Camera backend check for libcamera2opencv and OpenCV fallback",
+  "Live colour supervision with retract-safe, freeze hold, and acknowledged resume",
 ];
 
 const integrationItems = [
   "C++ runtime with clear control modules",
-  "Raspberry Pi camera path tuned for real hardware",
+  "Compliance-first Raspberry Pi camera backend with practical fallback",
   "PCA9685-backed motion control behind a robot interlock",
   "GPIO-based operator input using the Linux character-device ABI",
   "Run scripts for smoke tests, button tests, live tests, and demos",
+];
+
+const latencyCards = [
+  {
+    metric: "Detect unsafe",
+    measured: "4 ms",
+    target: "<= 30 ms",
+    note: "Capture of first unsafe frame to unsafe decision.",
+  },
+  {
+    metric: "Issue freeze",
+    measured: "458 ms",
+    target: "<= 900 ms",
+    note: "Unsafe decision to freeze callback in the control path.",
+  },
+  {
+    metric: "Stop motion",
+    measured: "7206 ms",
+    target: "<= 8000 ms",
+    note: "First unsafe frame to issued stop command.",
+  },
 ];
 
 const Index = () => {
@@ -72,8 +93,9 @@ const Index = () => {
                 </h1>
                 <p className="max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">
                   ARGUS is a vision-based safety layer that watches the scene, makes independent
-                  safety decisions, and freezes motion through hardware interlock. Recovery is
-                  explicit; no auto-resume, no guesswork. Built on Raspberry Pi. Tested. Real.
+                  safety decisions, and gates motion through guardian + interlock logic. In the
+                  surgery demonstrator, forbidden-layer colour in the cut zone triggers retract,
+                  freeze, and explicit operator-controlled resume.
                 </p>
               </div>
 
@@ -98,19 +120,19 @@ const Index = () => {
                   <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
                     Detection
                   </p>
-                  <p className="font-display text-2xl font-semibold">Live camera</p>
+                  <p className="font-display text-2xl font-semibold">Forbidden-layer colour</p>
                 </div>
                 <div className="rounded-[1.5rem] border border-border/70 bg-card/75 p-5">
                   <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
                     Action
                   </p>
-                  <p className="font-display text-2xl font-semibold">Immediate freeze</p>
+                  <p className="font-display text-2xl font-semibold">Retract then freeze</p>
                 </div>
                 <div className="rounded-[1.5rem] border border-border/70 bg-card/75 p-5">
                   <p className="mb-2 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
                     Recovery
                   </p>
-                  <p className="font-display text-2xl font-semibold">Operator continue</p>
+                  <p className="font-display text-2xl font-semibold">Space/button continue</p>
                 </div>
               </div>
             </div>
@@ -208,7 +230,7 @@ const Index = () => {
                   </div>
                   <h3 className="font-display text-xl font-semibold text-foreground mb-2">Vision processing</h3>
                   <p className="text-sm leading-7 text-muted-foreground max-w-2xl">
-                    Marker presence, ROI, and motion quality checks generate the safety state.
+                    Forbidden-layer colour detection in the monitored cut area generates safe/unsafe state.
                   </p>
                 </div>
               </div>
@@ -255,18 +277,22 @@ const Index = () => {
           </div>
         </section>
 
+        <section className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-10">
+          <SystemDiagram />
+        </section>
+
         <section id="validation" className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
           <div className="mb-10 max-w-3xl space-y-4">
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">
               Validation
             </p>
             <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground">
-              Tested on hardware, not in simulations
+              Hardware-tested and measured in runtime logs
             </h2>
             <p className="text-lg leading-8 text-muted-foreground">
               ARGUS runs on real Raspberry Pi hardware with actual camera feed, physical operator buttons,
               and a real robotic arm. Each module is isolated and tested. The full pipeline (detection, freeze,
-              safe-again, acknowledgment, resume) works on silicon.
+              safe-again, acknowledgment, resume) is validated on-device.
             </p>
           </div>
 
@@ -284,18 +310,73 @@ const Index = () => {
 
             <div className="rounded-[1.75rem] border border-primary/25 bg-primary/8 p-6">
               <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
-                Current demonstrator
+                Current live baseline
               </p>
               <p className="mb-4 font-display text-3xl font-semibold text-foreground">
-                Hardware-validated, product-positioned, still engineering-first.
+                Surgery flow with measurable safety response.
               </p>
               <p className="text-sm leading-7 text-muted-foreground">
-                This is the right tone for the site: speak like a serious control product,
-                but do not pretend the project is already a certified industrial safety
-                controller. The credibility comes from showing the real control path and
-                the real demo behavior.
+                The current demonstrator runs manual mode and predefined routines under the
+                same guardian/interlock safety contract: unsafe -&gt; retract-safe -&gt; freeze hold
+                -&gt; explicit operator continue.
               </p>
             </div>
+          </div>
+        </section>
+
+        <section id="latency" className="border-y border-border/60 bg-card/40">
+          <div className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10">
+            <div className="mb-10 max-w-4xl space-y-4">
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">
+                Latency evidence
+              </p>
+              <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground">
+                Runtime metrics aligned with published safety context
+              </h2>
+              <p className="text-lg leading-8 text-muted-foreground">
+                ARGUS measures latency in the live pipeline and compares it with engineering
+                targets used in the project baseline. The targets are justified in the README
+                and wiki using surgical robotics and teleoperation literature.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              {latencyCards.map((item) => (
+                <article
+                  key={item.metric}
+                  className="rounded-[1.75rem] border border-border/70 bg-card p-6"
+                >
+                  <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary">
+                    {item.metric}
+                  </p>
+                  <p className="font-display text-3xl font-semibold text-foreground">{item.measured}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Target: {item.target}</p>
+                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{item.note}</p>
+                </article>
+              ))}
+            </div>
+
+            <p className="mt-8 text-sm leading-7 text-muted-foreground">
+              See detailed metrics and references in the{" "}
+              <a
+                href="https://github.com/ENG5220-RTEP-Team-ARGUS/ARGUS/blob/develop/README.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline underline-offset-4"
+              >
+                README
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://github.com/ENG5220-RTEP-Team-ARGUS/ARGUS/wiki/Latency-and-Validation"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline underline-offset-4"
+              >
+                wiki latency page
+              </a>
+              .
+            </p>
           </div>
         </section>
 
