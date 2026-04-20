@@ -5,7 +5,7 @@ const stages = [
   },
   {
     title: "Vision processing",
-    detail: "Marker presence, ROI, and motion quality checks generate the safety state.",
+    detail: "Forbidden-layer colour detection in the monitored cut area generates safe/unsafe state.",
   },
   {
     title: "Guardian state machine",

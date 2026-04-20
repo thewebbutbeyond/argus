@@ -5,6 +5,7 @@ const Header = () => {
     { href: "#platform", label: "Platform" },
     { href: "#workflow", label: "Workflow" },
     { href: "#validation", label: "Validation" },
+    { href: "#latency", label: "Latency" },
     { href: "#integration", label: "Integration" },
   ];
 
