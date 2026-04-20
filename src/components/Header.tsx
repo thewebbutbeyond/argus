@@ -22,7 +22,7 @@ const Header = () => {
               ARGUS
             </p>
             <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
-              real-time safety supervision
+              adaptive real-time guardian for unsafe situations
             </p>
           </div>
         </a>

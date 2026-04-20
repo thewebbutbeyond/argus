@@ -65,7 +65,7 @@ const Index = () => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <p className="text-sm font-semibold uppercase tracking-[0.32em] text-primary">
-                  Real-time safety supervision
+                  Adaptive real-time guardian for unsafe situations
                 </p>
                 <h1 className="max-w-4xl font-display text-5xl font-semibold tracking-tight text-foreground md:text-6xl">
                   Stop the robot when the workspace becomes unsafe
