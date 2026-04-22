@@ -1,4 +1,4 @@
-import { Instagram, Youtube, Linkedin, Music } from "lucide-react";
+import { Github, Instagram, Youtube, Linkedin, Music } from "lucide-react";
 
 const Footer = () => {
   const socialLinks = [
@@ -21,6 +21,11 @@ const Footer = () => {
       href: "https://www.tiktok.com/@argusxisx61?_r=1&_t=ZN-95E4anYeInm",
       label: "TikTok",
       icon: Music,
+    },
+    {
+      href: "https://github.com/ENG5220-RTEP-Team-ARGUS/ARGUS",
+      label: "GitHub",
+      icon: Github,
     },
   ];
 
