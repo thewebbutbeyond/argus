@@ -58,7 +58,16 @@ const Footer = () => {
       <div className="border-t border-border/70">
         <div className="mx-auto w-full max-w-7xl px-6 py-6 lg:px-10">
           <p className="text-xs text-muted-foreground">
-            © 2026 ARGUS. All rights reserved.
+            © 2026 ARGUS. All rights reserved.{" "}
+            <a
+              href="https://www.thewebbutbeyond.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline-offset-4 transition-colors hover:text-primary hover:underline"
+            >
+              Powered by WEB+
+            </a>
+            .
           </p>
         </div>
       </div>
