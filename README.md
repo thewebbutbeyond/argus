@@ -1,73 +1,66 @@
-# Welcome to your Lovable project
+# A.R.G.U.S. Website
 
-## Project info
+Public website for **A.R.G.U.S.** - Adaptive Real-Time Guardian for Unsafe
+Situations.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+A.R.G.U.S. is a real-time, vision-based safety supervision layer for robotic
+manipulators. It continuously monitors the workspace, evaluates collision or
+interference risk under strict latency constraints, and triggers fail-safe
+interventions such as hard stop through event-driven control, prioritising
+deterministic response and safe interruption.
 
-## How can I edit this code?
+## Project Links
 
-There are several ways of editing your application.
+- Project repository: <https://github.com/ENG5220-RTEP-Team-ARGUS/ARGUS>
+- Project README: <https://github.com/ENG5220-RTEP-Team-ARGUS/ARGUS/blob/develop/README.md>
+- Project wiki: <https://github.com/ENG5220-RTEP-Team-ARGUS/ARGUS/wiki>
 
-**Use Lovable**
+## Website Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+This site is built with:
 
-Changes made via Lovable will be committed automatically to this repo.
+- Vite
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- lucide-react
 
-**Use your preferred IDE**
+## Local Development
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Install dependencies:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Start the development server:
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Run tests:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```sh
+npm test
+```
 
-**Use GitHub Codespaces**
+Build for production:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```sh
+npm run build
+```
 
-## What technologies are used for this project?
+Run linting:
 
-This project is built with:
+```sh
+npm run lint
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Related ARGUS Channels
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- Instagram: <https://www.instagram.com/argus102026/>
+- YouTube: <https://www.youtube.com/@argus-w3g>
+- LinkedIn: <https://www.linkedin.com/company/a-r-g-u-s>
+- TikTok: <https://www.tiktok.com/@argusxisx61>
